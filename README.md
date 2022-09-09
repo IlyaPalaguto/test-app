@@ -10,4 +10,4 @@
 
 - Answer
 
-- Resoult
+- Result
