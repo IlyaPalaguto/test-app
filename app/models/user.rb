@@ -1,9 +1,13 @@
 class User < ApplicationRecord
   def show_started_tests(level)
-    started_tests = StartedTest.where(user_id: self.id)
-    started_tests.map do |started_test|
-      current_test = Test.find_by(id: started_test.test_id)
-      current_test if current_test.level == level
-    end
+    tests_id = StartedTest.joins(
+      'JOIN users ON started_tests.user_id = users.id'
+    ).joins(
+      'JOIN tests ON started_tests.test_id = tests.id'
+    ).where(
+      'users.id = ? AND tests.level = ?', self.id, level
+    ).pluck('tests.id')
+
+    Test.where(id: tests_id)
   end
 end

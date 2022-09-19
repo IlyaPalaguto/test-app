@@ -21,26 +21,26 @@ categories = Category.create([{title: 'Ruby'}, {title: 'JavaScript'}, {title: 'P
 users = User.create([{name: 'Ilia'}, {name: 'Alex'}, {name: 'John'}])
 tests = []
 20.times do
-  tests << Test.create(
+  tests << Test.create!(
     title: lorem_ipsum.sample(3).join(' ').capitalize, 
-    author_id: Random.random_number(1..User.all.size), 
-    category_id: Random.random_number(1..Category.all.size), 
+    author_id: users.sample.id, 
+    category_id: categories.sample.id, 
     level: Random.random_number(10)
     )
 end
 
 questions = []
 120.times do
-  questions << Question.create(
+  questions << Question.create!(
     body: lorem_ipsum.sample(Random.rand(5..10)).join(' ').capitalize + '?',
-    test_id: Random.random_number(1..Test.all.size)
+    test_id: tests.sample.id
   )
 end
 
 answers = []
 4.times do |u|
   120.times do |i|
-    answers << Answer.create(
+    answers << Answer.create!(
       body: lorem_ipsum.sample(Random.rand(2..5)).join(' ').capitalize,
       correct: u == 3 ? true : false,
       question_id: i + 1
@@ -49,8 +49,8 @@ answers = []
 end
 
 30.times do
-  StartedTest.create(
-    user_id: Random.random_number(1..User.all.size),
-    test_id: Random.random_number(1..Test.all.size)
+  StartedTest.create!(
+    user_id: users.sample.id,
+    test_id: tests.sample.id
   )
 end
