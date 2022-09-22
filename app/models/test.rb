@@ -7,6 +7,6 @@ class Test < ApplicationRecord
   has_many :users, through: :started_tests, dependent: :destroy
   
   def self.show_tests(category)
-    Category.find_by(title: category).tests.order(title: :DESC)
+    Test.joins(:category).where(categories: {title: category}).order(title: :DESC).pluck(:title)
   end
 end
