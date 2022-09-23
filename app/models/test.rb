@@ -7,8 +7,7 @@ class Test < ApplicationRecord
   has_many :users, through: :started_tests, dependent: :destroy
   
   validates :title, presence: true, uniqueness: { scope: :level }
-  validates :level, numericality: { only_integer: true }
-  validate :validate_level_not_negative
+  validates :level, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   
   scope :level, -> (level) { where(level: level) }
   scope :easy_levels, -> { level(0..1) }
@@ -18,11 +17,5 @@ class Test < ApplicationRecord
   
   def self.show_tests(category)
     Test.with_category(category).order(title: :desc).pluck(:title)
-  end
-
-  private
-
-  def validate_level_not_negative
-    errors.add(:level) if level < 0
   end
 end
