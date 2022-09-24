@@ -3,7 +3,9 @@ class User < ApplicationRecord
   has_many :started_tests, dependent: :destroy
   has_many :tests, through: :started_tests, dependent: :destroy
 
-  def show_started_tests(level)
-    self.tests.where(level: level)
+  validates :name, presence: true
+
+  def show_started_tests(level = 0..10)
+    self.tests.level(level)
   end
 end
