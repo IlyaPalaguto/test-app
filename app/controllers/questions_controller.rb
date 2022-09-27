@@ -8,10 +8,14 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    question = Question.create(question_params)
-    return render :new if question.new_record?
+    @test = Test.find(params[:test_id])
+    @question = @test.questions.build(question_params)
 
-    redirect_to test_questions_path
+    if @question.save
+      redirect_to @question
+    else
+      render :new
+    end
   end
 
   def destroy
@@ -26,7 +30,7 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:body, :test_id)
+    params.require(:question).permit(:body)
   end
 
   def find_question
