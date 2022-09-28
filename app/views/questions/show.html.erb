@@ -1,0 +1,7 @@
+<div>
+<h1><%= @question.body %></h1>
+<ul><% @question.answers.each {|answer| %> 
+      <li><%= answer.body %></li>
+  <% } %> 
+</ul>
+</div>
