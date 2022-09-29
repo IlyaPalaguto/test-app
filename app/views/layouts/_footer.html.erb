@@ -1,16 +1,14 @@
 <% author = 'Ilya Palaguto' %>
 <% repo = 'Test-app' %>
-<div style="margin-top: 45px;
-            border-top: 1px solid gray;">
-  <small style="text-align: center;">
+<div class="footer">
+  <small>
     <p>
-      Devoloped by <a href=<%= github_url(author) %> target="_blank" rel="nofollow, noopener"><%= author %></a>
+      Devoloped by <%= github_url(author) %> 
     </p>
     <p><%= current_year %></p>
-    <p><a href=<%= github_url(author, repo) %> target="_blank" rel="nofollow, noopener"><%= repo %></a></p>
+    <p><%= github_url(author, repo) %></p>
     <p>
-      Учебный проект в онлайн-школе 
-      <a href="https://thinknetica.com/" target="_blank" rel="nofollow, noopener">Thinknetica</a>
+      Учебный проект в онлайн-школе <%= link_to 'Thinknetica', 'https://thinknetica.com/', target: '_blank'%>
     </p>
   </small>
 </div>
