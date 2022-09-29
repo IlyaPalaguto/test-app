@@ -4,7 +4,20 @@ class QuestionsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_not_found
 
   def index
-    @questions = Question.where(test_id: params[:test_id])
+    redirect_to test_path(params[:test_id])
+  end
+
+  def new
+    @test = Test.find(params[:test_id])
+    @question = Question.new
+  end
+
+  def edit
+    @question = Question.find(params[:id])
+  end
+
+  def show
+    @question = Question.find(params[:id])
   end
 
   def create
@@ -15,6 +28,16 @@ class QuestionsController < ApplicationController
       redirect_to @question
     else
       render :new
+    end
+  end
+
+  def update
+    @question = Question.find(params[:id])
+
+    if @question.update(question_params)
+      redirect_to @question
+    else
+      render :edit
     end
   end
 

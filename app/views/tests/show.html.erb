@@ -1,0 +1,11 @@
+<h1> <%= @test.title %> </h1>
+<h2> Количество вопросов: <%= @test.questions.count %></h2>
+
+<%= link_to 'Создать вопрос', new_test_question_path(@test) %>
+
+<ul>
+  <%= render @test.questions %>
+</ul>
+
+
+
