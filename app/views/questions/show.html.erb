@@ -1,7 +1,8 @@
 <div>
 <h1><%= @question.body %></h1>
-<ul><% @question.answers.each {|answer| %> 
-      <li><%= answer.body %></li>
-  <% } %> 
+<ul>
+  <%= render @question.answers %>
 </ul>
 </div>
+
+<%= link_to 'Back', test_path(@question.test) %>
