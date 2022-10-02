@@ -1,4 +1,3 @@
-<div>
 <ul><% @questions.each {|question| %> 
       <li>
         <a href="<%= question_path(question) %>"><%= question.body %></a>
@@ -6,4 +5,3 @@
       </li>
   <% } %> 
 </ul>
-</div>

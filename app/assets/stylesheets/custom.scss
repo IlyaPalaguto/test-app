@@ -10,3 +10,36 @@
     }
   }
 }
+
+.success {
+  color: green;
+}
+
+.fail {
+  color: red;
+}
+
+.form_field {
+  margin-bottom: 10px;
+  display: flex;
+
+  * {
+    padding: 10px;
+    align-self: center;
+  }
+
+  textarea {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 10px 20px -12px inset,
+      rgba(0, 0, 0, 0.3) 0px 6px 12px -18px inset;
+    border-radius: 4px;
+    border: 2px solid grey;
+    height: 100px;
+    width: 500px;
+  }
+
+  .field_with_errors {
+    label {
+      color: #eb5b5b;
+    }
+  }
+}
