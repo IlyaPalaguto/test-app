@@ -1,7 +1,7 @@
 module TestPassagesHelper
 
   def result_header
-    if @test_passage.result >= 85
+    if @test_passage.passed?
       'Тест успешно пройден'
     else
       'Тест провален'
@@ -9,7 +9,7 @@ module TestPassagesHelper
   end
 
   def result_class
-    if @test_passage.result >= 85
+    if @test_passage.passed?
       'success'
     else
       'fail'
