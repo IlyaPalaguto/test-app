@@ -1,0 +1,8 @@
+<h1>Log in</h1>
+
+<% if flash[:alert] %>
+  <%= content_tag :p, flash[:alert], class: 'flash alert' %>
+<% end %>
+
+<%= render 'form' %>
+<%= link_to 'Back', root_path %>

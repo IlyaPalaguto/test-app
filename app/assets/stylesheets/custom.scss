@@ -1,3 +1,24 @@
+// flash messages
+.alert {
+  border: 2px solid;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.flash.alert {
+  border-color: red;
+}
+
+// navigation
+
+.nav {
+  text-align: right;
+}
+
+.flash.success {
+  border-color: green;
+}
+
 .footer {
   margin-top: 45px;
   border-top: 1px solid gray;
