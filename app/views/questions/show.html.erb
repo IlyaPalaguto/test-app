@@ -1,8 +1,11 @@
-<div>
-<h1><%= @question.body %></h1>
+<h1><%= @question.test.title %></h1>
+
+<h2><%= @question.body %></h2>
+
+<%= link_to 'Добавить ответ', new_question_answer_path(@question) %>
+
 <ul>
   <%= render @question.answers %>
 </ul>
-</div>
 
 <%= link_to 'Back', test_path(@question.test) %>

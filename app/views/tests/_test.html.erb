@@ -1,0 +1,6 @@
+<li>
+  <%= link_to test.title, test_path(test) %>
+  <%= button_to 'Редактировать', edit_test_path(test), method: :get %>
+  <%= button_to 'Удалить', test_path(test), method: :delete %>
+  <%= button_to 'Начать', start_test_path(test) %><br>
+</li>

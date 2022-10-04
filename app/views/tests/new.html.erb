@@ -1,17 +1,4 @@
 <h1>Создать новый тест</h1>
-<form action="/tests" method="post">
-  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-  <input name="test[author_id]" value="1" type="hidden">
+<%= render 'form' %>
 
-  <p>
-    <label for="test-title">Название:</label>
-    <input type="text" name="test[title]" id="test-title">
-  </p>
-
-  <p>
-    <label for="test-level">Уровень:</label>
-    <input type="text" name="test[level]" id="test-level">
-  </p>
-
-  <input type="submit" value="Создать">
-</form>
+<%= link_to 'Back', tests_path %>

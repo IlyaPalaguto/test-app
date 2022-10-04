@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_not_found
 
   def new
-    @question = Question.new
+    @question = @test.questions.build
   end
 
   def create
