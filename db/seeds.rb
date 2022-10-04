@@ -7,7 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 categories = Category.create!([{title: 'Ruby'}, {title: 'JavaScript'}, {title: 'Python'}])
-users = User.create([{name: 'Ilia'}, {name: 'Alex'}, {name: 'John'}])
+users = User.create([{name: 'Ilia', email: 'ilia@example.com', password: 'qwerty', password_confirmation: 'qwerty'}, 
+                     {name: 'Alex', email: 'alex@example.com', password: 'qwerty', password_confirmation: 'qwerty'},
+                     {name: 'John', email: 'john@example.com', password: 'qwerty', password_confirmation: 'qwerty'}])
 
 tests = Test.create!([
   {title: 'Euismod nisi porta', author_id: users.first.id, category_id: categories.first.id, level: 5},
