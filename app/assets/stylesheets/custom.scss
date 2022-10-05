@@ -1,5 +1,5 @@
 // flash messages
-.alert {
+.flash {
   border: 2px solid;
   border-radius: 4px;
   padding: 10px;
@@ -9,14 +9,19 @@
   border-color: red;
 }
 
-// navigation
-
-.nav {
-  text-align: right;
+.flash.notice {
+  border-color: green;
 }
 
-.flash.success {
-  border-color: green;
+// navigation
+
+.navigation {
+  display: inline-flex;
+  align-content: right;
+  padding: 10px;
+  a {
+    padding: 10px;
+  }
 }
 
 .footer {

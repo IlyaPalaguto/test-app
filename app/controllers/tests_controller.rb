@@ -1,6 +1,5 @@
 class TestsController < ApplicationController
 
-  before_action :authenticate_user!
   before_action :find_test, only: %i[destroy show edit update start]
   before_action :find_user, only: %i[new create start]
 
@@ -43,7 +42,7 @@ class TestsController < ApplicationController
   private
 
   def find_user
-    @user = User.first
+    @user = current_user
   end
 
   def find_test

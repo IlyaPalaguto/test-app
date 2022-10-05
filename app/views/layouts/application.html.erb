@@ -10,9 +10,9 @@
   </head>
 
   <body>
-    <% if logged_in? %>
-      <%= content_tag :p, "Добро пожаловать, #{current_user.name}!", class: 'nav' %>
-    <% end %>
+    <%= render "layouts/navigation" %>
+    
+    <%= flash_messages %>
 
     <%= yield %>
     

@@ -1,0 +1,10 @@
+<div class ='navigation'>
+  <%= link_to 'Test-app', root_path %>
+  <% if logged_in? %>
+    <%= content_tag :p, "Welcome, #{current_user.name} Guru" %>
+    <%= button_to 'Выйти', session_path, method: :delete %>
+  <% elsif %>
+    <%= link_to 'Зарегестрироваться', signup_path %> |
+    <%= link_to 'Войти', login_path %>
+  <% end %>
+</div>

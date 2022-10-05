@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
 
+  before_action :authenticate_user!
+
   helper_method :current_user, :logged_in?
   
   private
@@ -8,6 +10,7 @@ class ApplicationController < ActionController::Base
     unless current_user
       redirect_to login_path, alert: 'Необходимо авторизоваться'
     end
+    session[:last_page] = request.original_url
   end
   
   def current_user

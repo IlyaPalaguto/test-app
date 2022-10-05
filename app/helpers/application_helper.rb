@@ -10,4 +10,10 @@ module ApplicationHelper
       link_to author, "https://github.com/#{author.delete(' ')}", target: "_blank"
     end
   end
+
+  def flash_messages
+    flash&.map { |key, value| content_tag :p, value, class: "flash #{key}" }.join.html_safe
+  end
+
+      
 end
