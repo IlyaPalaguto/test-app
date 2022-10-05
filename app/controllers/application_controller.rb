@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     unless current_user
       redirect_to login_path, alert: 'Необходимо авторизоваться'
     end
-    session[:last_page] = request.original_url
+    cookies[:last_page] = request.original_url if !logged_in?
   end
   
   def current_user

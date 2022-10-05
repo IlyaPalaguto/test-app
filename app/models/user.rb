@@ -4,9 +4,7 @@ class User < ApplicationRecord
   has_many :test_passages, dependent: :destroy
   has_many :tests, through: :test_passages, dependent: :destroy
 
-  EMAIL_FORMAT = /\A[a-z0-9+_.-]+@[a-z0-9.-]+\.[a-z]+\z/i.freeze
-  
-  validates :email, uniqueness: true, format: { with: EMAIL_FORMAT, 
+  validates :email, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP, 
                                                 message: 'Введите корректный email'}
 
   has_secure_password
