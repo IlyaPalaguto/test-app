@@ -11,13 +11,7 @@ module ApplicationHelper
     end
   end
 
-  def flash_messages
-    if flash[:notice]
-      content_tag :p, notice, class: "alert alert-success"
-    elsif flash[:alert]
-      content_tag :p, alert, class: "alert alert-danger"
-    end
+  def flash_message(type, message)
+    content_tag :p, message, class: "alert alert-#{type}"
   end
-
-      
 end

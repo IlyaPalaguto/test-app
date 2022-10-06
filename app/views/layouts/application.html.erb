@@ -12,8 +12,12 @@
 
   <body>
     <%= render "layouts/navigation" %>
-    
-    <%= flash_messages %>
+
+    <% if flash.any? %>
+      <% flash.each do |type, message| %>
+        <%= flash_message(type, message) %>
+      <% end %>
+    <% end %>
 
     <%= yield %>
     

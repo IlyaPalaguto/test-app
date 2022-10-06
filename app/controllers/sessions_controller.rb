@@ -8,21 +8,16 @@ class SessionsController < ApplicationController
     if user&.authenticate(params[:password])
       session[:user_id] = user.id
 
-      if cookies[:last_page]
-        redirect_to cookies[:last_page], notice: 'Вы вошли в аккаунт!'
-        cookies.delete(:last_page)
-      else
-        redirect_to root_path
-      end
+      redirect_to cookies.delete(:last_page) || root_path, success: 'Вы вошли в аккаунт!'
     else
-      flash.now[:alert] = 'Неправильный email или пароль!'
+      flash.now[:danger] = 'Неправильный email или пароль!'
       render :new
     end
   end
 
   def destroy
     session.delete(:user_id)
-    redirect_to login_path, notice: 'Вы вышли изи аккаунта'
+    redirect_to login_path, success: 'Вы вышли из аккаунта'
   end
 
 end

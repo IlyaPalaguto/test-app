@@ -3,14 +3,16 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   helper_method :current_user, :logged_in?
+
+  add_flash_types :danger, :success
   
   private
   
   def authenticate_user!
     unless current_user
-      redirect_to login_path, alert: 'Необходимо авторизоваться'
+      redirect_to login_path, danger: 'Необходимо авторизоваться'
+      cookies[:last_page] = request.original_url
     end
-    cookies[:last_page] = request.original_url if !logged_in?
   end
   
   def current_user
