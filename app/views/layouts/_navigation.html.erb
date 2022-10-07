@@ -4,7 +4,7 @@
     <ul class="nav justify-content-end">
       <% if logged_in? %>
         <li class="nav-item">
-          <%= content_tag :p, "Welcome, #{current_user.name} Guru", class: 'navbar-text' %>
+          <%= content_tag :p, "Welcome, #{current_user.name} Guru", class: 'navbar-text m-0' %>
         </li>
         <li class="nav-item">
           <%= button_to 'Exit', session_path, method: :delete, class: 'btn btn-outline-dark mx-2' %>

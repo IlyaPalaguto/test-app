@@ -1,5 +1,8 @@
 @import "bootstrap";
-
+ul {
+  display: inline-block;
+  text-align: left;
+}
 // flash messages
 .flash {
   border: 2px solid;
