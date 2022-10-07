@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg bg-light justify-content-end">
+  <div class="container-fluid">
+    <%= link_to 'Test-app', root_path, class: 'navbar-brand' %>
+    <ul class="nav justify-content-end">
+      <% if logged_in? %>
+        <li class="nav-item">
+          <%= content_tag :p, "Welcome, #{current_user.name} Guru", class: 'navbar-text' %>
+        </li>
+        <li class="nav-item">
+          <%= button_to 'Exit', session_path, method: :delete, class: 'btn btn-outline-dark mx-2' %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to 'Signup', signup_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Login', login_path, class: 'nav-link' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
