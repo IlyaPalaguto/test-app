@@ -118,6 +118,7 @@ ru:
       new:
         sign_in: Войти
       signed_in: Вход в систему выполнен.
+      signed_in_user: Привет %{user}!
       signed_out: Выход из системы выполнен.
     shared:
       links:
