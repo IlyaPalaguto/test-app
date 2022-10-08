@@ -60,8 +60,26 @@ ActiveRecord::Schema.define(version: 2022_10_07_121500) do
     t.index ["category_id"], name: "index_tests_on_category_id"
   end
 
-# Could not dump table "users" because of following StandardError
-#   Unknown type 'strig' for column 'type'
+  create_table "users", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", default: "", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.string "type", default: "User", null: false
+    t.string "last_name"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["type"], name: "index_users_on_type"
+  end
 
   add_foreign_key "answers", "questions"
   add_foreign_key "questions", "tests"
