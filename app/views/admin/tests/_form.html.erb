@@ -1,0 +1,19 @@
+<%= render 'shared/errors', resource: @test %>
+<%= form_with model: [:admin, @test] do |form| %>
+  <div class="form_field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="form_field">
+    <%= form.label :level %>
+    <%= form.number_field :level %>
+  </div>
+  
+  <div class="form_field">
+    <%= form.label :category_id %>
+    <%= form.collection_select :category_id, Category.all, :id, :title, prompt: true %>
+  </div>
+
+  <%= form.submit %>
+<% end %>

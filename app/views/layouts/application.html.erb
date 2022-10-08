@@ -13,11 +13,7 @@
   <body>
     <%= render "layouts/navigation" %>
 
-    <% if flash.any? %>
-      <% flash.each do |type, message| %>
-        <%= flash_message(type, message) %>
-      <% end %>
-    <% end %>
+    <%= render 'shared/flash' %>
 
     <div class='container'>
         <%= yield %>

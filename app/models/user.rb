@@ -1,4 +1,12 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable,
+         :registerable,
+         :recoverable,
+         :rememberable,
+         :validatable,
+         :confirmable
 
   has_many :created_tests, class_name: 'Test', foreign_key: "author_id", dependent: :destroy
   has_many :test_passages, dependent: :destroy
@@ -6,8 +14,6 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP, 
                                                 message: 'Введите корректный email'}
-
-  has_secure_password
 
   def show_test_passage(level = 0..10)
     self.tests.level(level)

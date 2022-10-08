@@ -1,0 +1,16 @@
+<div class="col mb-3">
+  <div class="card bg-light">
+    <div class="card-body">
+      <h5><%= link_to test.title, admin_test_path(test), class: "card-title" %></h5>
+      <h6 class="card-subtitle mb-2 text-muted"><%= "#{test.category.title} (level: #{test.level})" %></h6>
+      <div class="row">
+        <div class="col-auto">
+          <%= button_to 'Редактировать', edit_admin_test_path(test), method: :get, class: 'btn btn-secondary btn-sm my-1' %>
+        </div>
+        <div class="col-auto">
+          <%= button_to 'Удалить', admin_test_path(test), method: :delete, class: 'btn btn-danger btn-sm my-1' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

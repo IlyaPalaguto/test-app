@@ -1,0 +1,6 @@
+<li>
+  <%= link_to question.body, admin_question_path(question) %><br>
+  <%= button_to 'Редактировать', edit_admin_question_path(question), method: :get %>
+  <%= button_to 'Удалить', admin_question_path(question), method: :delete %><br>
+</li>
+ 

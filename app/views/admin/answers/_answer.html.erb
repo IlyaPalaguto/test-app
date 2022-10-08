@@ -1,0 +1,5 @@
+<li>
+  <%= answer.body %>
+  <%= button_to 'Редактировать', edit_admin_answer_path(answer), method: :get %>
+  <%= button_to 'Удалить', admin_answer_path(answer), method: :delete %><br>
+</li>

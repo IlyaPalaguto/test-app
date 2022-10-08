@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_30_090338) do
+ActiveRecord::Schema.define(version: 2022_10_07_121500) do
 
   create_table "answers", force: :cascade do |t|
     t.text "body", null: false
@@ -60,13 +60,8 @@ ActiveRecord::Schema.define(version: 2022_09_30_090338) do
     t.index ["category_id"], name: "index_tests_on_category_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "email", null: false
-    t.string "password_digest", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+# Could not dump table "users" because of following StandardError
+#   Unknown type 'strig' for column 'type'
 
   add_foreign_key "answers", "questions"
   add_foreign_key "questions", "tests"
