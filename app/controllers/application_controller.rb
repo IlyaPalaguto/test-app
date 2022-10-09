@@ -1,26 +1,22 @@
 class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
-
-  helper_method :current_user, :logged_in?
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   add_flash_types :danger, :success
-  
-  private
-  
-  def authenticate_user!
-    unless current_user
-      redirect_to login_path, danger: 'Необходимо авторизоваться'
-      cookies[:last_page] = request.original_url
-    end
-  end
-  
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name last_name])
   end
 
-  def logged_in?
-    current_user.present?
+  def stored_location_for(resource)
+    if resource.is_a?(Admin)
+      session['admin_return_to'] = admin_root_path
+    else
+      super
+    end
   end
-  
+
 end

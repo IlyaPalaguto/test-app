@@ -1,7 +1,5 @@
 <h1>Количество доступных тестов: <%= @tests.count %></h1>
 
-<%= link_to 'Создать новый тест', new_test_path %>
-
-<ul>
-<%= render @tests %>
-</ul>
+<div class="row row-cols-3">
+  <%= render @tests %>
+</div>
