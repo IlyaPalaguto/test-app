@@ -1,5 +1,5 @@
 <h1><%= result_header %></h1>
-<h2>Ваш результат: <span class=<%= result_class %>><%= @test_passage.result %>%</span></h2>
+<h2><%= t(".result_html", test: @test_passage.result, class: result_class) %></h2>
 
-<%= link_to 'Back', tests_path %>
+<%= link_to t('back'), tests_path %>
 

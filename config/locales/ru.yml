@@ -1,0 +1,59 @@
+ru:
+  greetings: "Добро пожаловать %{user} Guru!"
+  logout: "Выйти"
+  signup: "Регистрация"
+  login: "Войти"
+  back: "Назад"
+  edit: "Редактировать"
+  delete: "Удалить"
+
+  helpers:
+    select:
+      prompt: "Выберите категорию"
+
+    submit:
+      submit: "Следующий вопрос"
+
+      test:
+        create: "Создать тест"
+        update: "Обновить тест"
+
+    label:
+      test:
+        category_id: "Категория"
+
+  tests:
+    test:
+      start: "Начать тест"
+
+    index:
+      header:
+        few: "Вам доступно %{count} теста"
+        one: "Вам доступен %{count} тест"
+        many: "Вам доступно %{count} тестов"
+        other: "Вам доступно %{count} теста"
+
+  admin:
+    tests:
+      edit:
+        edit_test_header: 'Редактировать "%{test}" тест'
+
+      new:
+        create_test_header: "Создать новый тест"
+
+      index:
+        create_test: "Создать тест"
+
+      show:
+        create_question: "Создать вопрос"
+        questions_count:
+          one: "%{count} вопрос"
+          few: "%{count} вопроса"
+          many: "%{count} вопросов"
+          other: "%{count} вопроса"
+
+  test_passages:
+    result:
+      success: "%{test} тест успешно пройден!"
+      failed: "%{test} тест провален :("
+      result_html: "Ваш результат: <span class=%{class}>%{test}%</span>"

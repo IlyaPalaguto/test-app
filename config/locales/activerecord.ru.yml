@@ -1,0 +1,46 @@
+ru:
+  attributes:
+    created_at: "Создан"
+    updated_at: "Обновлен"
+    title: "Название"
+    level: "Уровень"
+    author: "Автор"
+    category: "Категория"
+
+  activerecord:
+    models:
+      admin: "Админ"
+      answer: "Ответ"
+      category: "Категория"
+      question: "Вопрос"
+      test: "Тест"
+      test_passage: "Прохождение теста"
+      user: "Пользователь"
+
+    attributes:
+      user:
+        name: "Имя"
+        email: "Email"
+        encrypted_password: "Пароль"
+        type: "Тип"
+        last_name: "Фамилия"
+
+      test_passage:
+        user: "Пользователь"
+        test: "Тест"
+        current_question_id: "Текущий вопрос"
+        correct_questions:
+          one: "Правильный ответ"
+          few: "Правильных ответа"
+          many: "Правильных ответов"
+          other: "Правильных ответа"
+        result: "Результат"
+
+      question:
+        body: "Текст вопроса"
+        test: "Тест"
+        position: "Позиция вопроса"
+
+      answer:
+        body: "Текст ответа"
+        correct: "Правильный"

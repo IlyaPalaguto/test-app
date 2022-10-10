@@ -12,7 +12,7 @@ class Users::SessionsController < Devise::SessionsController
   def create
     super
     
-    if current_user.name
+    if signed_in?
       set_flash_message! :notice, :signed_in_user, user: current_user.name
     end
   end

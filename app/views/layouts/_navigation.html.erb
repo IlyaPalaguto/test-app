@@ -4,17 +4,17 @@
     <ul class="nav justify-content-end">
       <% if user_signed_in? %>
         <li class="nav-item">
-          <%= content_tag :p, "Welcome, #{current_user.name} Guru", class: 'navbar-text m-0' %>
+          <%= content_tag :p, t("greetings", user: current_user.name), class: 'navbar-text m-0' %>
         </li>
         <li class="nav-item">
-          <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-outline-dark mx-2' %>
+          <%= button_to t('logout'), destroy_user_session_path, method: :delete, class: 'btn btn-outline-dark mx-2' %>
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to 'Signup', new_user_registration_path, class: 'nav-link' %>
+          <%= link_to t('signup'), new_user_registration_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
+          <%= link_to t('login'), new_user_session_path, class: 'nav-link' %>
         </li>
       <% end %>
     </ul>

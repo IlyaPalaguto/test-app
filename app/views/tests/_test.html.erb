@@ -3,7 +3,7 @@
     <div class="card-body">
       <h5 class='card-title'><%= test.title %></h5>
       <h6 class="card-subtitle mb-2 text-muted"><%= "#{test.category.title} (level: #{test.level})" %></h6>
-      <%= button_to 'Начать', start_test_path(test), class: 'btn btn-primary my-1' %>
+      <%= button_to t('.start'), start_test_path(test), class: 'btn btn-primary my-1' %>
     </div>
   </div>
 </div>

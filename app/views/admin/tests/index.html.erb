@@ -1,6 +1,6 @@
-<h1>Количество доступных тестов: <%= @tests.count %></h1>
+<h1><%= t('tests.index.header', count: @tests.count) %></h1>
 
-<%= link_to 'Создать новый тест', new_admin_test_path, class: 'btn btn-secondary mb-2' %>
+<%= link_to t('.create_test'), new_admin_test_path, class: 'btn btn-secondary mb-2' %>
 
 <div class="row row-cols-3">
   <%= render @tests %>
