@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Admin</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,10 +14,9 @@
   <body>
     <%= render "layouts/admin_navigation" %>
 
-    <%= render 'shared/flash' %>
-
     <div class='container'>
-        <%= yield %>
+      <%= render 'shared/flash' %>
+      <%= yield %>
     </div>
     
     <%= render "layouts/footer" %>

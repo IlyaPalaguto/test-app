@@ -105,6 +105,7 @@ ru:
         update: Обновить
         we_need_your_current_password_to_confirm_your_changes: введите текущий пароль для подтверждения изменений
       new:
+        signup_header: "Регистрация нового пользователя"
         sign_up: Регистрация
       signed_up: Добро пожаловать! Вы успешно зарегистрировались.
       signed_up_but_inactive: Вы успешно зарегистрированы. Однако, вы не можете войти в систему, потому что ваша учетная запись не активирована.
@@ -116,6 +117,8 @@ ru:
     sessions:
       already_signed_out: Выход из системы уже выполнен.
       new:
+        remember_me: Запомнить меня
+        login_header: "Вход в учетную запись"
         sign_in: Войти
       signed_in: Вход в систему выполнен.
       signed_in_user: Привет %{user}!

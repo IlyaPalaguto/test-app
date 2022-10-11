@@ -1,9 +1,15 @@
 <nav class="navbar navbar-expand-lg bg-light justify-content-end">
   <div class="container-fluid">
     <%= link_to 'Test-app', root_path, class: 'navbar-brand' %>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <%= link_to t('admin_panel'), admin_root_path, class: 'nav-link' if current_user.is_a?(Admin)%>
+        </li>
+      </ul>
+    </div>
     <ul class="nav justify-content-end">
       <% if user_signed_in? %>
-        <%= link_to t('admin_panel'), admin_root_path, class: 'navbar-brand' if current_user.is_a?(Admin)%>
         <li class="nav-item">
           <%= content_tag :p, t("greetings", user: current_user.name), class: 'navbar-text m-0' %>
         </li>

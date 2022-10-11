@@ -6,6 +6,7 @@ ruby '3.0.2'
 gem 'bootstrap', '~> 5.2.0'
 gem 'bootstrap-sass'
 gem 'bootstrap-will_paginate'
+gem "jquery-rails"
 
 gem 'rails-i18n'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
