@@ -6,6 +6,7 @@ en:
   back: "Back"
   edit: "Edit"
   delete: "Delete"
+  admin_panel: "Admin panel"
 
   helpers:
     select:

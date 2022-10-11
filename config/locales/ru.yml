@@ -6,6 +6,7 @@ ru:
   back: "Назад"
   edit: "Редактировать"
   delete: "Удалить"
+  admin_panel: "Панель администратора"
 
   helpers:
     select:

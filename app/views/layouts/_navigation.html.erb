@@ -3,6 +3,7 @@
     <%= link_to 'Test-app', root_path, class: 'navbar-brand' %>
     <ul class="nav justify-content-end">
       <% if user_signed_in? %>
+        <%= link_to t('admin_panel'), admin_root_path, class: 'navbar-brand' if current_user.is_a?(Admin)%>
         <li class="nav-item">
           <%= content_tag :p, t("greetings", user: current_user.name), class: 'navbar-text m-0' %>
         </li>
