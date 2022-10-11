@@ -2,9 +2,9 @@ module TestPassagesHelper
 
   def result_header
     if @test_passage.passed?
-      'Тест успешно пройден'
+      t('.success', test: @test_passage.test.title)
     else
-      'Тест провален'
+      t('.failed', test: @test_passage.test.title)
     end
   end
 

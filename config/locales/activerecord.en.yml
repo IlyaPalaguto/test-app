@@ -1,0 +1,63 @@
+en:
+  activerecord:
+    models:
+      admin: "Admin"
+      answer: "Answer"
+      category: "Category"
+      question: "Question"
+      test: "Test"
+      test_passage: "Test passage"
+      user: "User"
+
+    attributes:
+      test:
+        category: "Category"
+        title: "Title"
+        level: "Level"
+
+en:
+  attributes:
+    created_at: "Создан"
+    updated_at: "Обновлен"
+    title: "Название"
+
+  activerecord:
+    models:
+      admin: "Admin"
+      answer: "Answer"
+      category: "Category"
+      question: "Question"
+      test: "Test"
+      test_passage: "Test passage"
+      user: "User"
+
+    attributes:
+      test:
+        category: "Category"
+        title: "Title"
+        level: "Level"
+
+      user:
+        name: "Name"
+        email: "Email"
+        encrypted_password: "Password"
+        type: "Type"
+        last_name: "Last name"
+
+      test_passage:
+        user_id: "User"
+        test_id: "Test"
+        current_question_id: "Current question"
+        correct_questions:
+          one: "Correct question"
+          other: "Correct questions"
+        result: "Result"
+
+      question:
+        body: "Body"
+        test_id: "Test"
+        position: "Question position"
+
+      answer:
+        body: "Body"
+        correct: "Correct"
