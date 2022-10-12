@@ -1,9 +1,17 @@
+require 'octokit'
+require 'I18n'
+
 class GistQuestionService
+
+  # ACCESS_TOKEN = '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'
+  ACCESS_TOKEN = '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'
+
+  attr_reader :client
 
   def initialize(question, client: nil)
     @question = question
     @test = @question.test
-    @client = client || GitHubClient.new
+    @client = client || Octokit::Client.new(:access_token => ACCESS_TOKEN)
   end
 
   def call
@@ -14,7 +22,7 @@ class GistQuestionService
 
   def gist_params
     {
-      "description": "Question from #{@test.title} test.",
+      "description": I18n.translate("gist_question_service.description", test: @test.title),
       "public": true,
       "files": {
         "test-app-question.txt": {

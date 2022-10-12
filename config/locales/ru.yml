@@ -8,6 +8,9 @@ ru:
   delete: "Удалить"
   admin_panel: "Панель администратора"
 
+  gist_question_service:
+    description: 'Вопрос из "%{test}"'
+
   helpers:
     select:
       prompt: "Выберите категорию"
@@ -60,5 +63,5 @@ ru:
       result_html: "Ваш результат: <span class=%{class}>%{test}%</span>"
 
     gist:
-      success: "Gist успешно сохранен!"
+      success_html: "Ваш <a href=%{gist_url}>Gist</a> был успешно сохранен!"
       failure: "Во время сохранения Gist произошла ошибка"

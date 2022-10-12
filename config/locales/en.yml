@@ -8,6 +8,9 @@ en:
   delete: "Delete"
   admin_panel: "Admin panel"
 
+  gist_question_service:
+    description: 'Question from "%{test}" test'
+
   helpers:
     select:
       prompt: "Select category"
@@ -56,5 +59,8 @@ en:
       result_html: "Your result: <span class=%{class}>%{test}%</span>"
 
     gist:
-      success: "Gist was successfully created!"
+      success_html: "Your <a href=%{gist_url}>Gist</a> was successfully created!"
       failure: "An error occurred while saving Gist"
+
+      GistQuestionService:
+        description: 'Вопрос из "%{test}"'
