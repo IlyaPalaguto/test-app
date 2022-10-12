@@ -62,6 +62,7 @@ ru:
       failed: "%{test} тест провален :("
       result_html: "Ваш результат: <span class=%{class}>%{test}%</span>"
 
-    gist:
+  gists:
+    create:
       success_html: "Ваш <a href=%{gist_url}>Gist</a> был успешно сохранен!"
       failure: "Во время сохранения Gist произошла ошибка"

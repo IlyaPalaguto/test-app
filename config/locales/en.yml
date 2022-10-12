@@ -58,9 +58,7 @@ en:
       failed: "%{test} test failed :("
       result_html: "Your result: <span class=%{class}>%{test}%</span>"
 
-    gist:
+  gist:
+    create:
       success_html: "Your <a href=%{gist_url}>Gist</a> was successfully created!"
       failure: "An error occurred while saving Gist"
-
-      GistQuestionService:
-        description: 'Вопрос из "%{test}"'
