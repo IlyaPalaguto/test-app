@@ -54,3 +54,7 @@ en:
       success: "Success! %{test} test passed!"
       failed: "%{test} test failed :("
       result_html: "Your result: <span class=%{class}>%{test}%</span>"
+
+    gist:
+      success: "Gist was successfully created!"
+      failure: "An error occurred while saving Gist"

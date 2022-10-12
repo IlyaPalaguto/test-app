@@ -58,3 +58,7 @@ ru:
       success: "%{test} тест успешно пройден!"
       failed: "%{test} тест провален :("
       result_html: "Ваш результат: <span class=%{class}>%{test}%</span>"
+
+    gist:
+      success: "Gist успешно сохранен!"
+      failure: "Во время сохранения Gist произошла ошибка"
