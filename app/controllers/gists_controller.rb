@@ -13,7 +13,6 @@ class GistsController < ApplicationController
     end
 
     redirect_to @test_passage, flash_options
-    byebug
   end
   
 end
