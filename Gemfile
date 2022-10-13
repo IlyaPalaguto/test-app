@@ -34,9 +34,6 @@ gem 'devise', '~> 4.0'
 #Git client
 gem "octokit", "~> 5.0"
 
-#Networking
-gem "faraday"
-
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

@@ -14,17 +14,6 @@ class TestPassagesController < ApplicationController
     end
   end
 
-  def gist
-    begin
-      result = GistQuestionService.new(@test_passage.current_question).call
-      flash_options = { success: t(".success_html", gist_url: result[:html_url]) }
-    rescue Octokit::Error => e
-      flash_options = { danger: e.message }
-    end
-
-    redirect_to @test_passage, flash_options
-  end
-
   private
 
   def find_test_passage
