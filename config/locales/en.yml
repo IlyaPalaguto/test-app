@@ -8,6 +8,10 @@ en:
   delete: "Delete"
   admin_panel: "Admin panel"
 
+  gist_question_service:
+    description: 'Question from "%{test}" test'
+    auth_error: "GitHub authenticate error"
+
   helpers:
     select:
       prompt: "Select category"
@@ -54,3 +58,7 @@ en:
       success: "Success! %{test} test passed!"
       failed: "%{test} test failed :("
       result_html: "Your result: <span class=%{class}>%{test}%</span>"
+
+  gist:
+    create:
+      success_html: "Your <a href=%{gist_url}>Gist</a> was successfully created!"

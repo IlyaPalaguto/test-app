@@ -1,0 +1,24 @@
+<div class="row justify-content-center">
+  <div class="col col-md-6">
+    <table class="table table-hover text-center">
+      <thead>
+        <tr>
+          <th scope="col">Question</th>
+          <th scope="col">Gist URL</th>
+          <th scope="col">User</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @gists.each do |gist| %>
+          <tr>
+            <%= content_tag :td, truncate(gist.question.body, length: 25) %>
+            <td><%= link_to 'Git url', gist.url %></td>
+            <%= content_tag :td, gist.user.email %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%= link_to t('back'), admin_root_path %>

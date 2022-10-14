@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   
   namespace :admin do
     root to: 'tests#index'
-
+    get 'gists', to: "gists#index" 
     resources :tests do
       resources :questions, except: [:index], shallow: true do
         resources :answers, except: [:index], shallow: true
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :test_passages, only: %i[show update] do
     member do
       get :result
+      post 'gists', to: "gists#create"
     end
   end
       
