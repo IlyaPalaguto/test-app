@@ -1,2 +1,10 @@
 @import "bootstrap";
 @import "custom";
+@import "typography/icons";
+
+.alert-alert {
+  @extend .alert-danger;
+}
+.alert-notice {
+  @extend .alert-success;
+}

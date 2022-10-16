@@ -12,7 +12,7 @@ class GistsController < ApplicationController
       flash_options = { danger: result.error_message }
     end
 
-    redirect_to @test_passage, flash_options
+    redirect_to test_passage_path(params[:id]), flash_options
   end
   
 end
