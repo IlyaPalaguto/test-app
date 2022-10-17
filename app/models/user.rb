@@ -17,11 +17,10 @@ class User < ApplicationRecord
                                                 message: 'Введите корректный email'}
 
   def show_test_passage(level = 0..10)
-    self.tests.level(level)
+    tests.level(level)
   end
 
   def test_passage(test)
     test_passages.order(id: :desc).find_by(test_id: test.id)
   end
-
 end

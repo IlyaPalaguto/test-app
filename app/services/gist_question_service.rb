@@ -2,7 +2,6 @@ require 'octokit'
 require 'I18n'
 
 class GistQuestionService
-
   attr_reader :client
 
   def initialize(question, client: default_client)
@@ -12,7 +11,7 @@ class GistQuestionService
   end
 
   GitHubGist = Struct.new(:args) do
-    
+
     def success?
       args[:gist] ? true : false
     end
@@ -29,7 +28,6 @@ class GistQuestionService
   def call
     GitHubGist.new(gist: @client.create_gist(gist_params))
   rescue Octokit::Unauthorized
-
     GitHubGist.new(error: I18n.translate("gist_question_service.auth_error"))
   end
 
