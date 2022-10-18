@@ -1,107 +1,102 @@
-document.addEventListener("turbolinks:load", function () {
-  const control = document.getElementById("testsSorting");
-
-  if (control) {
-    control.addEventListener("click", sorting);
-  }
-});
-
-function sorting(e) {
-  const cardArray = document.querySelector(".row");
-
-  const cards = cardArray.querySelectorAll(".col");
-
-  const arrows = this.querySelectorAll(".octicon");
-  const arrowUp = e.target.querySelector(".octicon-arrow-up");
-  const arrowDown = e.target.querySelector(".octicon-arrow-down");
-
-  const sortedCards = [];
-
-  const sortingFunc = {
-    categorySortingAsc: categorySortingAsc,
-    categorySortingDesc: categorySortingDesc,
-    titleSortingAsc: titleSortingAsc,
-    titleSortingDesc: titleSortingDesc,
-  };
-
-  for (let i = 0; i < cards.length; i++) {
-    sortedCards.push(cards[i]);
+export default class Sorting {
+  constructor(ev, parentElement) {
+    this.target = ev.target;
+    this.arrows = parentElement.querySelectorAll(".octicon");
+    this.arrowUp = ev.target.querySelector(".octicon-arrow-up");
+    this.arrowDown = ev.target.querySelector(".octicon-arrow-down");
+    this.cardArray = document.querySelector(".row");
+    this.cards = this.cardArray.querySelectorAll(".col");
+    this.sortedCards = [];
+    this.sorting();
   }
 
-  if (arrowDown.classList.contains("hide")) {
-    hideArrows(arrows);
-    arrowDown.classList.remove("hide");
-    sortedCards.sort(sortingFunc[`${e.target.id}Asc`]);
-  } else {
-    hideArrows(arrows);
-    arrowUp.classList.remove("hide");
-    sortedCards.sort(sortingFunc[`${e.target.id}Desc`]);
+  sorting() {
+    const sortingFunc = {
+      categorySortingAsc: this.categorySortingAsc,
+      categorySortingDesc: this.categorySortingDesc,
+      titleSortingAsc: this.titleSortingAsc,
+      titleSortingDesc: this.titleSortingDesc,
+    };
+
+    for (let i = 0; i < this.cards.length; i++) {
+      this.sortedCards.push(this.cards[i]);
+    }
+
+    if (this.arrowDown.classList.contains("hide")) {
+      this.hideArrows(this.arrows);
+      this.arrowDown.classList.remove("hide");
+      this.sortedCards.sort(sortingFunc[`${this.target.id}Asc`]);
+    } else {
+      this.hideArrows(this.arrows);
+      this.arrowUp.classList.remove("hide");
+      this.sortedCards.sort(sortingFunc[`${this.target.id}Desc`]);
+    }
+
+    const sortedCardArray = document.createElement("div");
+    sortedCardArray.classList.add("row", "row-cols-3", "mt-3");
+
+    for (let i = 0; i < this.sortedCards.length; i++) {
+      sortedCardArray.appendChild(this.sortedCards[i]);
+    }
+
+    this.cardArray.parentNode.replaceChild(sortedCardArray, this.cardArray);
   }
 
-  const sortedCardArray = document.createElement("div");
-  sortedCardArray.classList.add("row", "row-cols-3", "mt-3");
-
-  for (let i = 0; i < sortedCards.length; i++) {
-    sortedCardArray.appendChild(sortedCards[i]);
+  hideArrows(arrows) {
+    for (let i = 0; i < arrows.length; i++) {
+      arrows[i].classList.add("hide");
+    }
   }
 
-  cardArray.parentNode.replaceChild(sortedCardArray, cardArray);
-}
+  titleSortingAsc(card1, card2) {
+    const title1 = card1.querySelector(".card-title").textContent;
+    const title2 = card2.querySelector(".card-title").textContent;
 
-function hideArrows(arrows) {
-  for (let i = 0; i < arrows.length; i++) {
-    arrows[i].classList.add("hide");
+    if (title1 > title2) {
+      return 1;
+    }
+    if (title1 < title2) {
+      return -1;
+    }
+    return 0;
   }
-}
 
-function titleSortingAsc(card1, card2) {
-  const title1 = card1.querySelector(".card-title").textContent;
-  const title2 = card2.querySelector(".card-title").textContent;
+  titleSortingDesc(card1, card2) {
+    const title1 = card1.querySelector(".card-title").textContent;
+    const title2 = card2.querySelector(".card-title").textContent;
 
-  if (title1 > title2) {
-    return 1;
+    if (title1 < title2) {
+      return 1;
+    }
+    if (title1 > title2) {
+      return -1;
+    }
+    return 0;
   }
-  if (title1 < title2) {
-    return -1;
-  }
-  return 0;
-}
 
-function titleSortingDesc(card1, card2) {
-  const title1 = card1.querySelector(".card-title").textContent;
-  const title2 = card2.querySelector(".card-title").textContent;
+  categorySortingAsc(card1, card2) {
+    const category1 = card1.querySelector(".card-subtitle").textContent;
+    const category2 = card2.querySelector(".card-subtitle").textContent;
 
-  if (title1 < title2) {
-    return 1;
+    if (category1 > category2) {
+      return 1;
+    }
+    if (category1 < category2) {
+      return -1;
+    }
+    return 0;
   }
-  if (title1 > title2) {
-    return -1;
-  }
-  return 0;
-}
 
-function categorySortingAsc(card1, card2) {
-  const category1 = card1.querySelector(".card-subtitle").textContent;
-  const category2 = card2.querySelector(".card-subtitle").textContent;
+  categorySortingDesc(card1, card2) {
+    const category1 = card1.querySelector(".card-subtitle").textContent;
+    const category2 = card2.querySelector(".card-subtitle").textContent;
 
-  if (category1 > category2) {
-    return 1;
+    if (category1 < category2) {
+      return 1;
+    }
+    if (category1 > category2) {
+      return -1;
+    }
+    return 0;
   }
-  if (category1 < category2) {
-    return -1;
-  }
-  return 0;
-}
-
-function categorySortingDesc(card1, card2) {
-  const category1 = card1.querySelector(".card-subtitle").textContent;
-  const category2 = card2.querySelector(".card-subtitle").textContent;
-
-  if (category1 < category2) {
-    return 1;
-  }
-  if (category1 > category2) {
-    return -1;
-  }
-  return 0;
 }
