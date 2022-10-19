@@ -5,8 +5,8 @@
       <h6 class="card-subtitle mb-2 text-muted"><%= "#{test.category.title} (level: #{test.level})" %></h6>
 
       <div class="list-group list-group-horizontal">
-        <%= button_to t('edit'), edit_admin_test_path(test), method: :get, class: 'list-group-item bg-secondary text-white' %>
-        <%= button_to t('delete'), admin_test_path(test), method: :delete, class: 'list-group-item bg-danger text-white' %>
+        <%= link_to t('edit'), edit_admin_test_path(test), method: :get, class: 'list-group-item bg-secondary text-white' %>
+        <%= link_to t('delete'), admin_test_path(test), method: :delete, class: 'list-group-item bg-danger text-white' %>
       </div>
     </div>
   </div>

@@ -10,9 +10,9 @@ module TestPassagesHelper
 
   def result_class
     if @test_passage.passed?
-      'success'
+      'text-success'
     else
-      'fail'
+      'text-danger'
     end
   end
   

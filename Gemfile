@@ -3,10 +3,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.2'
 
+gem "jquery-rails"
 gem 'bootstrap', '~> 5.2.0'
 gem 'bootstrap-sass'
 gem 'bootstrap-will_paginate'
-gem "jquery-rails"
+gem 'octicons_helper'
 
 gem 'rails-i18n'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
