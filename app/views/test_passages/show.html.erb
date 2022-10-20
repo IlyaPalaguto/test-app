@@ -1,5 +1,9 @@
 <h1><%= @test_passage.test.title %></h1>
 
+<div class="progress">
+  <%= content_tag :div, '', class: 'progress-bar', data: { progress: @test_passage.progress } %>
+</div>
+
 <figure>
   <blockquote class="blockquote">
     <p><%= @test_passage.current_question.body %></p>

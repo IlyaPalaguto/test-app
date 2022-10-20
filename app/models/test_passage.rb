@@ -26,6 +26,14 @@ class TestPassage < ApplicationRecord
     self.update_columns(result: self.correct_questions * 100.0 / self.test.questions.count)
   end
 
+  def progress
+    if current_question
+      ((test.questions.index(current_question) + 1.0) / test.questions.length * 100).round
+    else
+      100
+    end
+  end
+
   private
   
   def before_validation_set_current_question

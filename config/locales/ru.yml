@@ -49,6 +49,9 @@ ru:
       index:
         create_test: "Создать тест"
 
+      form_inline:
+        ok: "ОК"
+
       show:
         create_question: "Создать вопрос"
         questions_count:
