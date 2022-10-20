@@ -47,6 +47,9 @@ en:
       index:
         create_test: "Create test"
 
+      form_inline:
+        ok: "OK"
+
       show:
         create_question: "Create question"
         questions_count:

@@ -8,6 +8,8 @@ import Turbolinks from "turbolinks";
 import * as ActiveStorage from "@rails/activestorage";
 import "channels";
 import "packs/events";
+import "utilities/inlineform";
+import "utilities/progress";
 import "bootstrap";
 
 Rails.start();

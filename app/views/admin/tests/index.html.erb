@@ -2,6 +2,8 @@
 
 <%= link_to t('.create_test'), new_admin_test_path, class: 'btn btn-secondary mb-2' %>
 
+<%= render 'shared/errors', resource: @test %>
+
 <div class="row row-cols-3">
   <%= render @tests %>
 </div>
