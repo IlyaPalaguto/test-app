@@ -1,6 +1,3 @@
-require 'octokit'
-require 'I18n'
-
 class GistQuestionService
   attr_reader :client
 
