@@ -5,8 +5,6 @@ ruby '3.0.2'
 
 gem "jquery-rails"
 gem 'bootstrap', '~> 5.2.0'
-gem 'bootstrap-sass'
-gem 'bootstrap-will_paginate'
 gem 'octicons_helper'
 
 gem 'rails-i18n'
