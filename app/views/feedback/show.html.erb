@@ -1,0 +1,13 @@
+<%= form_with scope: :letter, url: feedback_path, local: true, method: :post do |form| %>
+  <p>
+    <%= form.label :subject %>
+    <%= form.text_field :subject %>
+  </p>
+
+  <p>
+    <%= form.label :message %>
+    <%= form.text_field :message %>
+  </p>
+
+  <%= form.submit t('.send'), class: 'btn btn-primary' %>
+<% end %>
