@@ -13,7 +13,7 @@ class Test < ApplicationRecord
   scope :easy_levels, -> { level(0..1) }
   scope :middle_levels, -> { level(2..4) }
   scope :hard_levels, -> { level(5..Float::INFINITY) }
-  scope :with_category, -> (category) { joins(:category).where(categories: {title: category}) }
+  scope :with_category, -> (category) { where(category_id: category) }
   
   def self.show_tests(category)
     Test.with_category(category).order(title: :desc).pluck(:title)

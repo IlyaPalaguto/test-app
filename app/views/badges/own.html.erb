@@ -1,0 +1,7 @@
+<h1 class="text-center mt-3">Your badges</h1>
+
+<%= link_to 'All badges', badges_path, class: 'btn btn-secondary' %>
+
+<div class="row row-cols-3">
+  <%= render @badges %>
+</div>
