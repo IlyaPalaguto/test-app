@@ -17,7 +17,7 @@
 
             <p>
               <%= form.label :rule_id %>
-              <%= form.collection_select :rule_id, Rule.all, :id, :title, { prompt: false }, { class: "form-control" } %>
+              <%= form.collection_select :rule_id, Rule.all, :id, :description, { prompt: false }, { class: "form-control" } %>
             </p>
 
             <%= form.submit class:'btn btn-primary' %>

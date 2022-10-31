@@ -65,7 +65,8 @@ ActiveRecord::Schema.define(version: 2022_10_27_131417) do
   end
 
   create_table "rules", force: :cascade do |t|
-    t.string "title"
+    t.string "description", null: false
+    t.string "title", null: false
     t.bigint "category_id"
     t.integer "level"
     t.datetime "created_at", precision: 6, null: false

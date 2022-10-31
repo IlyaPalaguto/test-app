@@ -27,7 +27,7 @@ document.addEventListener("turbolinks:load", function () {
 
   if (ruleForm) {
     const btns = ruleForm.querySelectorAll("button");
-    const titleField = document.getElementById("rule_title");
+    const titleField = document.getElementById("rule_description");
     const attrFields = ruleForm.querySelector(".attribute");
     titleField.addEventListener("input", function (ev) {
       new RuleFormBtn(btns, titleField, attrFields, ev).checkRule();
