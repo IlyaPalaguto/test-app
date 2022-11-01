@@ -4,6 +4,13 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'users/sessions' }, path_names: {sign_in: :login, sign_out: :logout, sign_up: :signup}
 
   resource :feedback, only: %i[show create], controller: :feedback
+
+  resources :badges, only: :index do
+
+    collection do
+      get :own
+    end
+  end
   
   resources :tests, only: :index do
     
@@ -13,6 +20,8 @@ Rails.application.routes.draw do
   end
   
   namespace :admin do
+    resources :badges
+    resources :rules
     root to: 'tests#index'
     get 'gists', to: "gists#index" 
     resources :tests do
@@ -25,6 +34,7 @@ Rails.application.routes.draw do
   
   resources :test_passages, only: %i[show update] do
     member do
+      get :end
       get :result
       post 'gists', to: "gists#create"
     end

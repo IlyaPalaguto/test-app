@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_20_191830) do
+ActiveRecord::Schema.define(version: 2022_10_31_160132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,21 @@ ActiveRecord::Schema.define(version: 2022_10_20_191830) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "badges", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "image", null: false
+    t.bigint "rule_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["rule_id"], name: "index_badges_on_rule_id"
+  end
+
+  create_table "badges_users", id: false, force: :cascade do |t|
+    t.bigint "badge_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["badge_id", "user_id"], name: "index_badges_users_on_badge_id_and_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -49,6 +64,16 @@ ActiveRecord::Schema.define(version: 2022_10_20_191830) do
     t.index ["test_id"], name: "index_questions_on_test_id"
   end
 
+  create_table "rules", force: :cascade do |t|
+    t.string "description", null: false
+    t.string "title", null: false
+    t.bigint "category_id"
+    t.integer "level"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_rules_on_category_id"
+  end
+
   create_table "test_passages", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "test_id", null: false
@@ -57,6 +82,7 @@ ActiveRecord::Schema.define(version: 2022_10_20_191830) do
     t.integer "result"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "time_left"
     t.index ["current_question_id"], name: "index_test_passages_on_current_question_id"
     t.index ["test_id"], name: "index_test_passages_on_test_id"
     t.index ["user_id"], name: "index_test_passages_on_user_id"
@@ -69,8 +95,10 @@ ActiveRecord::Schema.define(version: 2022_10_20_191830) do
     t.integer "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "timer"
     t.index ["author_id"], name: "index_tests_on_author_id"
     t.index ["category_id"], name: "index_tests_on_category_id"
+    t.index ["timer"], name: "index_tests_on_timer"
     t.index ["title", "level"], name: "index_tests_on_title_and_level", unique: true
   end
 
@@ -96,9 +124,11 @@ ActiveRecord::Schema.define(version: 2022_10_20_191830) do
   end
 
   add_foreign_key "answers", "questions"
+  add_foreign_key "badges", "rules"
   add_foreign_key "gists", "questions"
   add_foreign_key "gists", "users"
   add_foreign_key "questions", "tests"
+  add_foreign_key "rules", "categories"
   add_foreign_key "test_passages", "questions", column: "current_question_id"
   add_foreign_key "test_passages", "tests"
   add_foreign_key "test_passages", "users"

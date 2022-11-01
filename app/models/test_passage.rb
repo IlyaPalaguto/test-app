@@ -1,12 +1,15 @@
 class TestPassage < ApplicationRecord
+  SUCCESS_RATIO = 85.freeze
 
   belongs_to :user
   belongs_to :test
   belongs_to :current_question, class_name: 'Question', optional: true
 
-  before_validation :before_validation_set_current_question
+  scope :passed_tests, -> { where("result >= ?", SUCCESS_RATIO) }
 
-  SUCCESS_RATIO = 85.freeze
+  before_validation :before_validation_set_time_left, on: :create
+  before_validation :before_validation_set_current_question
+  before_update :before_update_set_time_left
 
   def completed?
     self.current_question.nil?
@@ -23,18 +26,26 @@ class TestPassage < ApplicationRecord
   end
   
   def calculate_result
-    self.update_columns(result: self.correct_questions * 100.0 / self.test.questions.count)
+    self.update_columns(result: self.correct_questions * 100.0 / self.test.questions.count, current_question_id: nil)
   end
 
   def progress
     if current_question
-      ((test.questions.index(current_question) + 1.0) / test.questions.length * 100).round
+      ((test.questions.index(current_question).to_f) / test.questions.length * 100).round
     else
       100
     end
   end
 
   private
+
+  def before_validation_set_time_left
+    self.time_left = self.test.timer
+  end
+    
+  def before_update_set_time_left
+    self.time_left = (self.created_at + self.test.timer.seconds) - Time.current
+  end
   
   def before_validation_set_current_question
     self.current_question = next_question

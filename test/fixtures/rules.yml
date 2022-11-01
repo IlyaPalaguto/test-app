@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  badge: one
+  title: MyString
+  category: one
+  level: MyString
+
+two:
+  badge: two
+  title: MyString
+  category: two
+  level: MyString
