@@ -1,8 +1,12 @@
 import PasswordMatching from "../utilities/passwordmatching.js";
 import Sorting from "../utilities/sorting.js";
 import RuleFormBtn from "../utilities/ruleformbtn";
+import { initializeClock } from "../utilities/timer.js";
+import { startTimer } from "../utilities/timered.js";
 
 document.addEventListener("turbolinks:load", function () {
+  const timer = document.getElementById("timer");
+
   const ruleForm = document.querySelector(".create-rule");
 
   const passwordConfirmation = document.getElementById(
@@ -37,5 +41,9 @@ document.addEventListener("turbolinks:load", function () {
         new RuleFormBtn(btns, titleField, attrFields, ev).showFields();
       });
     }
+  }
+
+  if (timer) {
+    startTimer(timer);
   }
 });

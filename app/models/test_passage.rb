@@ -7,7 +7,9 @@ class TestPassage < ApplicationRecord
 
   scope :passed_tests, -> { where("result >= ?", SUCCESS_RATIO) }
 
+  before_validation :before_validation_set_time_left, on: :create
   before_validation :before_validation_set_current_question
+  before_update :before_update_set_time_left
 
   def completed?
     self.current_question.nil?
@@ -24,7 +26,7 @@ class TestPassage < ApplicationRecord
   end
   
   def calculate_result
-    self.update_columns(result: self.correct_questions * 100.0 / self.test.questions.count)
+    self.update_columns(result: self.correct_questions * 100.0 / self.test.questions.count, current_question_id: nil)
   end
 
   def progress
@@ -36,6 +38,14 @@ class TestPassage < ApplicationRecord
   end
 
   private
+
+  def before_validation_set_time_left
+    self.time_left = self.test.timer
+  end
+    
+  def before_update_set_time_left
+    self.time_left = (self.created_at + self.test.timer.seconds) - Time.current
+  end
   
   def before_validation_set_current_question
     self.current_question = next_question
