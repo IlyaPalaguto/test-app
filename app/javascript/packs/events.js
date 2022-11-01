@@ -1,8 +1,7 @@
 import PasswordMatching from "../utilities/passwordmatching.js";
 import Sorting from "../utilities/sorting.js";
 import RuleFormBtn from "../utilities/ruleformbtn";
-import { initializeClock } from "../utilities/timer.js";
-import { startTimer } from "../utilities/timered.js";
+import { startTimer } from "../utilities/timer.js";
 
 document.addEventListener("turbolinks:load", function () {
   const timer = document.getElementById("timer");
