@@ -1,12 +1,13 @@
 class TestPassage < ApplicationRecord
+  SUCCESS_RATIO = 85
 
   belongs_to :user
   belongs_to :test
   belongs_to :current_question, class_name: 'Question', optional: true
 
-  before_validation :before_validation_set_current_question
+  scope :passed_tests, -> { where("result >= ?", SUCCESS_RATIO) }
 
-  SUCCESS_RATIO = 85.freeze
+  before_validation :before_validation_set_current_question
 
   def completed?
     self.current_question.nil?
@@ -28,7 +29,7 @@ class TestPassage < ApplicationRecord
 
   def progress
     if current_question
-      ((test.questions.index(current_question) + 1.0) / test.questions.length * 100).round
+      ((test.questions.index(current_question).to_f) / test.questions.length * 100).round
     else
       100
     end
