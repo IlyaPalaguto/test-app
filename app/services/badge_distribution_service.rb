@@ -11,15 +11,43 @@ class BadgeDistributionService
   # end
 
   def call
-    rules = Rule.where(category_id: @test.category)
-                .or(Rule.where(level: @test.level)
-                .or(Rule.where(category_id: nil, level: nil)))
+    all_badges = Badge.where(rule_option: [{category_id: @test.category}, 
+                                           {level: @test.level},
+                                           nil])
+    puts all_badges
 
-    rules.each do |rule|
-      if rule.check(@user, @test)
-        @user.badges << rule.badges.last
-      end
-    end
+
+
+    
+    # all_badges = Badge.where("rule_option->'category' = ?", @test.category.id)
+    #                   .or("rule_option->'level' = ?", @test.level)
+    # all_tests = Test.all
+    
+    # all_badges.each {|badge|
+    #   if Test.where(badge.rule_option).include(@test)
+
+    # if @test.category == badge.rule_option
+    #   tests = Test.where(badge.rule_option)
+      
+    #   # 'all_of' // 'first_try'
+    #   rule = badge.rule
+    #   # {"category_id"=>4}
+    #   rule_option = badge.rule_option
+
+    #   if badge.rule_option?
+    #     send()
+    #   }
+      # if badge.rule send(badge.rule, badge.rule_option if badge.rule_option)
+      
+    # rules = Rule.where(category_id: @test.category)
+    #             .or(Rule.where(level: @test.level)
+    #             .or(Rule.where(category_id: nil, level: nil)))
+
+    # rules.each do |rule|
+    #   if rule.check(@user, @test)
+    #     @user.badges << rule.badges.last
+    #   end
+    # end
   end
 
   def self.all_of(option)
@@ -32,7 +60,7 @@ class BadgeDistributionService
     true
   end
 
-  def on_first_try?(user, test)
+  def on_first_try?()
     TestPassage.where(test_id: test, user_id: user).size == 1
   end
 end
