@@ -1,7 +1,10 @@
 import PasswordMatching from "../utilities/passwordmatching.js";
 import Sorting from "../utilities/sorting.js";
+import { startTimer } from "../utilities/timer.js";
 
 document.addEventListener("turbolinks:load", function () {
+  const timer = document.getElementById("timer");
+
   const passwordConfirmation = document.getElementById(
     "user_password_confirmation"
   );
@@ -20,5 +23,9 @@ document.addEventListener("turbolinks:load", function () {
     sorting.addEventListener("click", function (ev) {
       new Sorting(ev, sorting);
     });
+  }
+
+  if (timer) {
+    startTimer(timer);
   }
 });

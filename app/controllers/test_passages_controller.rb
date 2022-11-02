@@ -1,6 +1,6 @@
 class TestPassagesController < ApplicationController
 
-  before_action :find_test_passage, only: %i[show update result]
+  before_action :find_test_passage, only: %i[show update result end]
 
   def update
     @test_passage.accept!(params[:answer_ids])
@@ -12,6 +12,11 @@ class TestPassagesController < ApplicationController
     else
       render :show
     end
+  end
+  
+  def end
+    @test_passage.calculate_result
+    redirect_to result_test_passage_path(@test_passage)
   end
 
   private
