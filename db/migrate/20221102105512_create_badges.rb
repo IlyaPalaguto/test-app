@@ -4,7 +4,7 @@ class CreateBadges < ActiveRecord::Migration[6.1]
       t.string :title, null: false
       t.string :image, null: false
       t.integer :rule, null: false
-      t.jsonb :rule_option, null: false
+      t.jsonb :rule_option
 
       t.timestamps
     end

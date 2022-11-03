@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2022_11_02_105806) do
     t.string "title", null: false
     t.string "image", null: false
     t.integer "rule", null: false
-    t.jsonb "rule_option", null: false
+    t.jsonb "rule_option"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
