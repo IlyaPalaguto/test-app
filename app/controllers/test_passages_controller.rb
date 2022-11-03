@@ -13,11 +13,6 @@ class TestPassagesController < ApplicationController
       render :show
     end
   end
-  
-  def end
-    @test_passage.calculate_result
-    redirect_to result_test_passage_path(@test_passage)
-  end
 
   private
 

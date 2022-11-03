@@ -23,7 +23,7 @@ let remainingPathColor = COLOR_CODES.info.color;
 
 function onTimesUp() {
   clearInterval(timerInterval);
-  document.location.href = document.location + "/end";
+  document.getElementById("submit_btn").click();
 }
 
 function startTimer(timer) {

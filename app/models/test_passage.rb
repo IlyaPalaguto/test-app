@@ -6,7 +6,7 @@ class TestPassage < ApplicationRecord
 
   before_validation :before_validation_set_time_left, on: :create
   before_validation :before_validation_set_current_question
-  before_update :before_update_set_time_left
+  before_update :before_update_set_time_left, unless: Proc.new { self.test.timer.nil? }
 
   SUCCESS_RATIO = 85.freeze
 
@@ -30,7 +30,7 @@ class TestPassage < ApplicationRecord
 
   def progress
     if current_question
-      ((test.questions.index(current_question) + 1.0) / test.questions.length * 100).round
+      ((test.questions.index(current_question).to_f) / test.questions.length * 100).round
     else
       100
     end
@@ -44,6 +44,7 @@ class TestPassage < ApplicationRecord
 
   def before_update_set_time_left
     self.time_left = (self.created_at + self.test.timer.seconds) - Time.current
+    self.current_question = nil if timesUp?
   end
   
   def before_validation_set_current_question
@@ -66,6 +67,10 @@ class TestPassage < ApplicationRecord
   
   def correct_answer
     self.current_question.answers.correct
+  end
+
+  def timesUp?
+    self.time_left <= 0
   end
   
 end
