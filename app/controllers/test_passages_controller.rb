@@ -8,12 +8,8 @@ class TestPassagesController < ApplicationController
     if @test_passage.completed?
       TestsMailer.completed_test(@test_passage).deliver_now
       @test_passage.calculate_result
-      distribution = BadgeDistributionService.new(@test_passage).call if @test_passage.passed?
-
-      if distribution.awarded?
-        redirect_to result_test_passage_path(@test_passage), success: "You get new badge!"
-      else
-        redirect_to result_test_passage_path(@test_passage)
+      BadgeDistributionService.new(@test_passage).call if @test_passage.passed
+      redirect_to result_test_passage_path(@test_passage)
       end
     else
       render :show

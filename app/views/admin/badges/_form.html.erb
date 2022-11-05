@@ -17,17 +17,12 @@
 
             <p>
               <%= form.label :rule %>
-              <%= form.select :rule, Badge.rules.keys, class: "form-control" %>
+              <%= form.select :rule, Badge.rules.values, class: "form-control" %>
             </p>
 
             <p>
-              <%= form.label :rule_option_attr %>
-              <%= form.select :rule_option_attr, Test.first.attributes.keys %>
-            </p>
-
-            <p>
-              <%= form.collection_select :rule_option_value, Category.all, :id, :title, { class: "form-control" } %>
-              <%= form.select :rule_option_attr, Test.first.attributes.keys %>
+              <%= form.label :rule_option %>
+              <%= form.number_field :rule_option %>
             </p>
 
             <%= form.submit class:'btn btn-primary' %>

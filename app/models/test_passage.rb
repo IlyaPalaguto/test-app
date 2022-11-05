@@ -5,16 +5,10 @@ class TestPassage < ApplicationRecord
   belongs_to :test
   belongs_to :current_question, class_name: 'Question', optional: true
 
-  scope :passed_tests, -> { where("result >= ?", SUCCESS_RATIO) }
-
   before_validation :before_validation_set_current_question
 
   def completed?
     self.current_question.nil?
-  end
-
-  def passed?
-    self.result >= SUCCESS_RATIO
   end
 
   def accept!(answer_ids)
@@ -25,6 +19,7 @@ class TestPassage < ApplicationRecord
   
   def calculate_result
     self.update_columns(result: self.correct_questions * 100.0 / self.test.questions.count)
+    update_columns(passed: true) if result >= SUCCESS_RATIO
   end
 
   def progress
