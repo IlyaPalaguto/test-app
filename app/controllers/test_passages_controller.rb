@@ -1,6 +1,6 @@
 class TestPassagesController < ApplicationController
 
-  before_action :find_test_passage, only: %i[show update result end]
+  before_action :find_test_passage, only: %i[show update result]
 
   def update
     @test_passage.accept!(params[:answer_ids])

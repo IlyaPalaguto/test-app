@@ -4,18 +4,17 @@ class TestPassage < ApplicationRecord
   belongs_to :test
   belongs_to :current_question, class_name: 'Question', optional: true
 
-  before_validation :before_validation_set_time_left, on: :create
   before_validation :before_validation_set_current_question
-  before_update :before_update_set_time_left, unless: Proc.new { self.test.timer.nil? }
+  before_validation :before_validation_set_time_left, unless: Proc.new { test.timer.nil? }
 
   SUCCESS_RATIO = 85.freeze
 
   def completed?
-    self.current_question.nil?
+    current_question.nil? || timesUp?
   end
 
   def passed?
-    self.result >= SUCCESS_RATIO
+    result >= SUCCESS_RATIO
   end
 
   def accept!(answer_ids)
@@ -25,7 +24,7 @@ class TestPassage < ApplicationRecord
   end
   
   def calculate_result
-    self.update_columns(result: self.correct_questions * 100.0 / self.test.questions.count,  current_question_id: nil)
+    update_columns(result: correct_questions * 100.0 / test.questions.count)
   end
 
   def progress
@@ -39,12 +38,11 @@ class TestPassage < ApplicationRecord
   private
 
   def before_validation_set_time_left
-    self.time_left = self.test.timer
-  end
-
-  def before_update_set_time_left
-    self.time_left = (self.created_at + self.test.timer.seconds) - Time.current
-    self.current_question = nil if timesUp?
+    if created_at
+      self.time_left = (created_at + test.timer.seconds) - Time.current
+    else
+      self.time_left = test.timer
+    end
   end
   
   def before_validation_set_current_question
@@ -52,10 +50,10 @@ class TestPassage < ApplicationRecord
   end
   
   def next_question
-    if self.current_question.present?
-      self.test.questions.order(:position).where('position > ?', current_question.position).first
+    if current_question.present?
+      test.questions.order(:position).where('position > ?', current_question.position).first
     else
-      self.current_question = self.test.questions.find_by(position: 1)
+      current_question = test.questions.find_by(position: 1)
     end
   end
   
@@ -66,11 +64,11 @@ class TestPassage < ApplicationRecord
   end
   
   def correct_answer
-    self.current_question.answers.correct
+    current_question.answers.correct
   end
 
   def timesUp?
-    self.time_left <= 0
+    time_left <= 0 if test.timer
   end
   
 end
