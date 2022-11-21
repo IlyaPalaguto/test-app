@@ -1,4 +1,5 @@
 class TestPassage < ApplicationRecord
+  SUCCESS_RATIO = 85
 
   belongs_to :user
   belongs_to :test
@@ -6,14 +7,8 @@ class TestPassage < ApplicationRecord
 
   before_validation :before_validation_set_current_question
 
-  SUCCESS_RATIO = 85.freeze
-
   def completed?
     self.current_question.nil?
-  end
-
-  def passed?
-    self.result >= SUCCESS_RATIO
   end
 
   def accept!(answer_ids)
@@ -24,11 +19,12 @@ class TestPassage < ApplicationRecord
   
   def calculate_result
     self.update_columns(result: self.correct_questions * 100.0 / self.test.questions.count)
+    update_columns(passed: true) if result >= SUCCESS_RATIO
   end
 
   def progress
     if current_question
-      ((test.questions.index(current_question) + 1.0) / test.questions.length * 100).round
+      ((test.questions.index(current_question).to_f) / test.questions.length * 100).round
     else
       100
     end
