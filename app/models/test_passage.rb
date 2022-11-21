@@ -1,4 +1,5 @@
 class TestPassage < ApplicationRecord
+  SUCCESS_RATIO = 85
 
   belongs_to :user
   belongs_to :test
@@ -6,8 +7,6 @@ class TestPassage < ApplicationRecord
 
   before_validation :before_validation_set_current_question
   before_validation :before_validation_set_time_left, unless: Proc.new { test.timer.nil? }
-
-  SUCCESS_RATIO = 85.freeze
 
   def completed?
     current_question.nil? || timesUp?
@@ -25,6 +24,7 @@ class TestPassage < ApplicationRecord
   
   def calculate_result
     update_columns(result: correct_questions * 100.0 / test.questions.count)
+    update_columns(passed: true) if result >= SUCCESS_RATIO
   end
 
   def progress
