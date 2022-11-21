@@ -6,9 +6,14 @@ class TestPassage < ApplicationRecord
   belongs_to :current_question, class_name: 'Question', optional: true
 
   before_validation :before_validation_set_current_question
+  before_validation :before_validation_set_time_left, unless: Proc.new { test.timer.nil? }
 
   def completed?
-    self.current_question.nil?
+    current_question.nil? || timesUp?
+  end
+
+  def passed?
+    result >= SUCCESS_RATIO
   end
 
   def accept!(answer_ids)
@@ -18,7 +23,7 @@ class TestPassage < ApplicationRecord
   end
   
   def calculate_result
-    self.update_columns(result: self.correct_questions * 100.0 / self.test.questions.count)
+    update_columns(result: correct_questions * 100.0 / test.questions.count)
     update_columns(passed: true) if result >= SUCCESS_RATIO
   end
 
@@ -31,16 +36,24 @@ class TestPassage < ApplicationRecord
   end
 
   private
+
+  def before_validation_set_time_left
+    if created_at
+      self.time_left = (created_at + test.timer.seconds) - Time.current
+    else
+      self.time_left = test.timer
+    end
+  end
   
   def before_validation_set_current_question
     self.current_question = next_question
   end
   
   def next_question
-    if self.current_question.present?
-      self.test.questions.order(:position).where('position > ?', current_question.position).first
+    if current_question.present?
+      test.questions.order(:position).where('position > ?', current_question.position).first
     else
-      self.current_question = self.test.questions.find_by(position: 1)
+      current_question = test.questions.find_by(position: 1)
     end
   end
   
@@ -51,7 +64,11 @@ class TestPassage < ApplicationRecord
   end
   
   def correct_answer
-    self.current_question.answers.correct
+    current_question.answers.correct
+  end
+
+  def timesUp?
+    time_left <= 0 if test.timer
   end
   
 end

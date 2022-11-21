@@ -4,6 +4,12 @@
   <%= content_tag :div, '', class: 'progress-bar', data: { progress: @test_passage.progress } %>
 </div>
 
+<%= content_tag :div,
+                '',
+                id: 'timer',
+                data: { time_left: @test_passage.time_left,
+                        time_limit: @test_passage.test.timer } if @test_passage.test.timer %>
+
 <figure>
   <blockquote class="blockquote">
     <p><%= @test_passage.current_question.body %></p>
@@ -27,7 +33,7 @@
   <% end %>
 
   
-  <%= form.submit class: 'btn btn-primary' %>
+  <%= form.submit class: 'btn btn-primary', id: 'submit_btn' %>
   
 <% end %>
 
